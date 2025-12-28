@@ -1,0 +1,111 @@
+.layout-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .game-container {
+    width: 120rem;
+    height: 50rem;
+    border: 0.3rem solid #6b0000;
+    border-radius: 0.5rem;
+    background: #0a0000;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 2rem rgba(200, 0, 0, 0.4), 0 0 5rem rgba(150, 0, 0, 0.3),
+      0 0 10rem rgba(100, 0, 0, 0.2), inset 0 0 3rem rgba(100, 0, 0, 0.2);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(0deg, rgba(100, 0, 0, 0.15) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .runner-stop {
+      position: absolute;
+      bottom: 6rem;
+      left: 5rem;
+      height: 9rem;
+      z-index: 5;
+    }
+
+    .runner-character {
+      position: absolute;
+      left: 5rem;
+      z-index: 5;
+      transition: bottom 0.25s ease-out;
+    }
+
+    .ground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 6rem;
+      display: flex;
+      z-index: 1;
+      will-change: transform;
+      animation: moveGround 5.5s linear infinite;
+
+      &.paused {
+        animation-play-state: paused;
+      }
+
+      &__track {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(180deg, #2a0000 0%, #0a0000 100%);
+        border-top: 0.3rem solid #8b0000;
+        box-shadow: inset 0 -0.5rem 1.5rem rgba(0, 0, 0, 0.45);
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 1.2rem;
+          left: 0;
+          width: 100%;
+          height: 0.35rem;
+          background: repeating-linear-gradient(90deg, #8b0000 0 18px, transparent 18px 40px);
+          opacity: 0.6;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .obstacle {
+      position: absolute;
+      height: 6rem;
+      width: auto;
+      z-index: 4;
+      pointer-events: none;
+
+      &--ground {
+        bottom: 6rem;
+      }
+
+      &--air {
+        bottom: 11rem;
+        width: 9rem;
+        height: 7rem;
+      }
+    }
+  }
+}
+
+@keyframes moveGround {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

@@ -1,0 +1,11 @@
+<div class="game-over-overlay" *ngIf="gameService.isGameOver()">
+  <div class="game-over-content">
+    <h1>GAME OVER</h1>
+    <div class="stats">
+      <p>Final Score: {{ scoreService.score() | number : '1.0-0' }}</p>
+      <p>High Score: {{ scoreService.highScore() }}</p>
+      <p>Obstacles Dodged: {{ scoreService.obstaclesDodged() }}</p>
+    </div>
+    <button (click)="restart()">RESTART</button>
+  </div>
+</div>

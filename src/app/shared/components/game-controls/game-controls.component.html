@@ -1,0 +1,14 @@
+<div class="controllers">
+  <button
+    (click)="startGame()"
+    [disabled]="disableStart()"
+    [title]="disableStart() ? 'Enter timer first' : ''"
+  >
+    RUN
+  </button>
+  <button (click)="pauseGame()">PAUSE</button>
+  <button (click)="restartGame()">RESTART</button>
+  <button (click)="toggleSound()">
+    {{ audioService.isMuted() ? 'SOUND OFF' : 'SOUND ON' }}
+  </button>
+</div>

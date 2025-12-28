@@ -1,0 +1,31 @@
+.controllers {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: flex;
+  gap: 1rem;
+
+  button {
+    font-family: 'Creepster', cursive;
+    font-size: 2rem;
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 0.2rem solid #8b0000;
+    color: #8b0000;
+    cursor: pointer;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 0.5rem rgba(139, 0, 0, 0.5);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(139, 0, 0, 0.2);
+      box-shadow: 0 0 1rem rgba(139, 0, 0, 0.5);
+    }
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      // pointer-events: none;
+    }
+  }
+}

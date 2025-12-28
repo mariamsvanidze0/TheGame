@@ -1,0 +1,35 @@
+<div class="layout-wrapper">
+  <app-game-hud></app-game-hud>
+  <app-game-controls></app-game-controls>
+  <app-game-actions></app-game-actions>
+  <div class="game-container">
+    <ng-container *ngIf="!isRunning(); else running">
+      <img class="runner-stop" src="img/runner-stop.png" alt="runner" />
+    </ng-container>
+    <ng-template #running>
+      <img
+        class="runner-character"
+        [style.bottom]="bottomPosition() + 'rem'"
+        [style.width]="charSize() + 'rem'"
+        src="img/runner.gif"
+        alt="runner"
+      />
+    </ng-template>
+
+    <img
+    *ngFor="let obstacle of obstacleService.obstacles(); trackBy: trackByObstacleId"
+      class="obstacle"
+      [class.obstacle--ground]="obstacle.type === 'ground'"
+      [class.obstacle--air]="obstacle.type === 'air'"
+      [style.left.rem]="obstacle.leftPosition"
+      [src]="obstacle.type === 'ground' ? 'img/flame.png' : 'img/flamearrow.png'"
+      alt="obstacle"
+    />
+
+    <div class="ground" [class.paused]="!isRunning()">
+      <div class="ground__track"></div>
+      <div class="ground__track"></div>
+    </div>
+  </div>
+  <app-game-over></app-game-over>
+</div>

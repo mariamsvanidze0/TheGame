@@ -1,0 +1,26 @@
+<div class="hud-section">
+  <label>TIMER (seconds)</label>
+  <input type="number" [formControl]="timerForm" />
+  <span class="error-message" *ngIf="timerForm.invalid && (timerForm.dirty || timerForm.touched)">
+    Enter whole number
+  </span>
+  <span class="hud-value">{{ timerDisplay() }}</span>
+
+  <h2>SCORE</h2>
+  <span class="hud-value">{{ scoreService.score() | number : '1.0-0' }}</span>
+
+  <h2>HIGH SCORE</h2>
+  <span class="hud-value high">{{ scoreService.highScore() }}</span>
+  <h2>DODGED</h2>
+  <span class="hud-value">{{ scoreService.obstaclesDodged() }}</span>
+
+  <h2>SPEED</h2>
+  <span class="hud-value">{{ obstacleService.speed() | number : '1.1-1' }}X</span>
+
+  <label>DIFFICULTY</label>
+  <select (change)="onDifficultyChange($event)">
+    <option value="easy">Easy</option>
+    <option value="normal" selected>Normal</option>
+    <option value="hard">Hard</option>
+  </select>
+</div>
